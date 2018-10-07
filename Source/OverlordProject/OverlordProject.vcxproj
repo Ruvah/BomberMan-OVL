@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4BB7590D-3CD1-4AAC-AC8F-DB0534E11B4F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>OverlordProject</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>_Temp\$(Configuration)\</IntDir>
+    <IncludePath>$(PHYSX_SDK)\Include;$(OV_LIBS)\DX_Tex\include;$(OV_LIBS)\DX_Effects11\include;$(OV_LIBS)\Fmod\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(PHYSX_SDK)\Lib\vc14win32;$(OV_LIBS)\DX_Tex\lib;$(OV_LIBS)\DX_Effects11\lib;$(OV_LIBS)\Fmod\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>_Temp\$(Configuration)\</IntDir>
+    <IncludePath>$(PHYSX_SDK)\Include;$(OV_LIBS)\DX_Tex\include;$(OV_LIBS)\DX_Effects11\include;$(OV_LIBS)\Fmod\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(PHYSX_SDK)\Lib\vc14win32;$(OV_LIBS)\DX_Tex\lib;$(OV_LIBS)\DX_Effects11\lib;$(OV_LIBS)\Fmod\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../OverlordProject/;../OverlordEngine/;../OverlordProject/</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <Profile>
+      </Profile>
+      <IgnoreSpecificDefaultLibraries>libcpmtd.lib;libcmtd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)\PhysX\bin\bin_debug\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)\Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../OverlordProject/;../OverlordEngine/;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>libcpmt.lib;libcmt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)\PhysX\bin\bin_release\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)\Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="CourseObjects\Bomberman\AnimatedMesh.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Box.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Bomb.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\BomberMan.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\BManLevel1.cpp" />
+    <ClCompile Include="BoneObject.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Helpers.cpp" />
+    <ClCompile Include="CourseObjects\Week 7\HardwareSkinningScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 8\ParticleTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 8\PostProcessingScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 9\ShadowMappingScene.cpp" />
+    <ClCompile Include="CourseObjects\Week4\FontTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week5\SkyBoxTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week6\SoftwareSkinningScene_1.cpp" />
+    <ClCompile Include="CourseObjects\Week6\SoftwareSkinningScene_2.cpp" />
+    <ClCompile Include="CourseObjects\Week6\SoftwareSkinningScene_3.cpp" />
+    <ClCompile Include="CourseObjects\Geom Shader\FurShaderTest.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Map\Map.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Enemy.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\MainMenu.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\EndScreen.cpp" />
+    <ClCompile Include="Materials\FurMaterial.cpp" />
+    <ClCompile Include="Materials\Post\PostBlur.cpp" />
+    <ClCompile Include="Materials\Post\PostGrayscale.cpp" />
+    <ClCompile Include="Materials\Shadow\DiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Materials\SkinnedDiffuseMaterial.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\Powerup.cpp" />
+    <ClCompile Include="Prefabs\SkyBoxPrefab.cpp" />
+    <ClCompile Include="CourseObjects\Week 1\ComponentTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 1\TestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 2\Character.cpp" />
+    <ClCompile Include="CourseObjects\Week 2\CharacterTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week 2\ModelTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Week3\SpriteTestScene.cpp" />
+    <ClCompile Include="Materials\DiffuseMaterial.cpp" />
+    <ClCompile Include="Materials\ColorMaterial.cpp" />
+    <ClCompile Include="Materials\SkyBoxMaterial.cpp" />
+    <ClCompile Include="Materials\UberMaterial.cpp" />
+    <ClCompile Include="CourseObjects\Week4\PickTestScene.cpp" />
+    <ClCompile Include="CourseObjects\Bomberman\SimpleEnemy.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="CourseObjects\Bomberman\Map\Tile.cpp" />
+    <ClCompile Include="Materials\Post\PostVignetting.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OverlordEngine\OverlordEngine.vcxproj">
+      <Project>{634cfe8d-455c-45bf-94f0-bd0aab13e0e6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CourseObjects\Bomberman\AnimatedMesh.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Box.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Bomb.h" />
+    <ClInclude Include="CourseObjects\Bomberman\BomberMan.h" />
+    <ClInclude Include="CourseObjects\Bomberman\BManLevel1.h" />
+    <ClInclude Include="BoneObject.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Helpers.h" />
+    <ClInclude Include="CourseObjects\Week 7\HardwareSkinningScene.h" />
+    <ClInclude Include="CourseObjects\Week 8\ParticleTestScene.h" />
+    <ClInclude Include="CourseObjects\Week 8\PostProcessingScene.h" />
+    <ClInclude Include="CourseObjects\Week 9\ShadowMappingScene.h" />
+    <ClInclude Include="CourseObjects\Week4\FontTestScene.h" />
+    <ClInclude Include="CourseObjects\Week5\SkyBoxTestScene.h" />
+    <ClInclude Include="CourseObjects\Week6\SoftwareSkinningScene_1.h" />
+    <ClInclude Include="CourseObjects\Week6\SoftwareSkinningScene_2.h" />
+    <ClInclude Include="CourseObjects\Week6\SoftwareSkinningScene_3.h" />
+    <ClInclude Include="CourseObjects\Geom Shader\FurShaderTest.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Map\Map.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Enemy.h" />
+    <ClInclude Include="CourseObjects\Bomberman\MainMenu.h" />
+    <ClInclude Include="CourseObjects\Bomberman\EndScreen.h" />
+    <ClInclude Include="Materials\FurMaterial.h" />
+    <ClInclude Include="Materials\Post\PostBlur.h" />
+    <ClInclude Include="Materials\Post\PostGrayscale.h" />
+    <ClInclude Include="Materials\Shadow\DiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Materials\SkinnedDiffuseMaterial.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Powerup.h" />
+    <ClInclude Include="Prefabs\SkyBoxPrefab.h" />
+    <ClInclude Include="CourseObjects\Week 1\ComponentTestScene.h" />
+    <ClInclude Include="CourseObjects\Week 1\TestScene.h" />
+    <ClInclude Include="CourseObjects\Week 2\Character.h" />
+    <ClInclude Include="CourseObjects\Week 2\CharacterTestScene.h" />
+    <ClInclude Include="CourseObjects\Week 2\ModelTestScene.h" />
+    <ClInclude Include="CourseObjects\Week3\SpriteTestScene.h" />
+    <ClInclude Include="Materials\DiffuseMaterial.h" />
+    <ClInclude Include="Materials\ColorMaterial.h" />
+    <ClInclude Include="Materials\SkyBoxMaterial.h" />
+    <ClInclude Include="Materials\UberMaterial.h" />
+    <ClInclude Include="CourseObjects\Week4\PickTestScene.h" />
+    <ClInclude Include="CourseObjects\Bomberman\SimpleEnemy.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="CourseObjects\Bomberman\Map\Tile.h" />
+    <ClInclude Include="Materials\Post\PostVignetting.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
